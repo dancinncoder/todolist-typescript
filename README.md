@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# Fan Letter Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TodoList TypeScript
 
-## Available Scripts
+## Project Type
 
-In the project directory, you can run:
+Individual Project
 
-### `yarn start`
+## Duration
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+12/12/2023 - 18/12/2023
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Development Environment
 
-### `yarn test`
+1. React
+2. JavaScript
+3. HTML
+4. CSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+5. Styled-Components (CSS)
+6. React Router Dom (Multiple Pages Building)
 
-### `yarn build`
+## Data Manamgement
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Redux
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Build UI
+2. Post Fan Letter
+3. Delete Fan Letter
+4. Edit Fan Letter
+5. View Fan Letter Lists Categorized by Movie Character of Timothee Chalamet Played in Roles
+6. Reload through the main logo onclick
 
-### `yarn eject`
+## Requirement
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Fan Letter Create/Read/Update/Delete
+2. Show Fan Letter Lists Categorized by Movie Character of Timothee Chalamet Played in Roles
+3. Post Fan Letter with The Character of Users' Choice
+4. Show A Fan Letter Details on Details Page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Component Overview
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Header : header that includes home logo(string type)
+2. FormArea : Input area where there are Fan Letter username, and message input box and 'to whom' select sections.
+3. List : the display area of letters sorted by the receiver
+4. UserIcon: user icon for each letter
+5. Footer : Footer
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Service Overview
 
-## Learn More
+![fan-letter-video-gif](https://github.com/dancinncoder/fanletter/assets/127386988/94d7afe4-443a-43fc-86fc-4573c044d67c)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Deployment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Copy and paste on the web browser to check the deployment result.
+
+```
+https://reduxfanletter.vercel.app/
+
+```
+
+## Built With
+
+- Letter icon : Icons8
+- Deployment Host : Vercel (https://vercel.com/)
