@@ -49,28 +49,39 @@ function App() {
       <StDisplay>
         <StTodoContainer>
           <h1>working</h1>
-          {todos.map((todo: Todo) => {
-            return (
-              <div key={todo.id}>
-                <h2>{todo.title}</h2>
-                <p>{todo.content}</p>
-                <p>{todo.isDone}</p>
-                <button>삭제</button>
-                <button>완료</button>
-              </div>
-            );
-          })}
+          {todos
+            .filter((todo: Todo) => {
+              return todo.isDone === false;
+            })
+            .map((todo: Todo) => {
+              return (
+                <div key={todo.id}>
+                  <h2>{todo.title}</h2>
+                  <p>{todo.content}</p>
+                  <p>{todo.isDone}</p>
+                  <button>삭제</button>
+                  <button>완료</button>
+                </div>
+              );
+            })}
         </StTodoContainer>
         <StTodoContainer>
           <h1>done</h1>
-          <div>
-            <p>id</p>
-            <h2>제목</h2>
-            <p>내용</p>
-            <p>완료여부</p>
-            <button>삭제</button>
-            <button>취소</button>
-          </div>
+          {todos
+            .filter((todo: Todo) => {
+              return todo.isDone === true;
+            })
+            .map((todo: Todo) => {
+              return (
+                <div key={todo.id}>
+                  <h2>제목</h2>
+                  <p>내용</p>
+                  <p>완료여부</p>
+                  <button>삭제</button>
+                  <button>취소</button>
+                </div>
+              );
+            })}
         </StTodoContainer>
       </StDisplay>
     </StOuterFrame>
