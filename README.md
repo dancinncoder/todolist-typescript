@@ -1,6 +1,6 @@
-# Fan Letter Website
+# Todo List
 
-TodoList TypeScript
+TodoList TypeScript (RTK)
 
 ## Project Type
 
@@ -14,39 +14,23 @@ Individual Project
 
 1. React
 2. JavaScript
-3. HTML
-4. CSS
+3. TypeScript
+4. Redux Toolkit
+5. HTML
+6. CSS
 
-5. Styled-Components (CSS)
-6. React Router Dom (Multiple Pages Building)
+7. Styled-Components (CSS)
 
 ## Data Manamgement
 
-Redux
+Redux Toolkit
 
 ## Features
 
 1. Build UI
-2. Post Fan Letter
-3. Delete Fan Letter
-4. Edit Fan Letter
-5. View Fan Letter Lists Categorized by Movie Character of Timothee Chalamet Played in Roles
-6. Reload through the main logo onclick
-
-## Requirement
-
-1. Fan Letter Create/Read/Update/Delete
-2. Show Fan Letter Lists Categorized by Movie Character of Timothee Chalamet Played in Roles
-3. Post Fan Letter with The Character of Users' Choice
-4. Show A Fan Letter Details on Details Page
-
-## Component Overview
-
-1. Header : header that includes home logo(string type)
-2. FormArea : Input area where there are Fan Letter username, and message input box and 'to whom' select sections.
-3. List : the display area of letters sorted by the receiver
-4. UserIcon: user icon for each letter
-5. Footer : Footer
+2. Add TodoList
+3. Delete TodoList
+4. Switch status
 
 ## Service Overview
 
