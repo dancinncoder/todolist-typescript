@@ -4,7 +4,7 @@ import uuid from "react-uuid";
 import { styled } from "styled-components";
 import { RootStateType } from "./redux/config/store";
 import { Todo } from "./types/todoType";
-import { addTodo } from "./redux/modules/todoSlice";
+import { addTodo, deleteTodo, switchTodo } from "./redux/modules/todoSlice";
 
 function App() {
   const [title, setTitle] = useState<string>("");
@@ -35,6 +35,14 @@ function App() {
     setTitle("");
     setContent("");
   };
+
+  const deleteTodoHandler = (id: string) => {
+    dispatch(deleteTodo(id));
+  };
+
+  const switchTodoHandler = (id: string) => {
+    dispatch(switchTodo(id));
+  };
   return (
     <StOuterFrame>
       <StTotalTitle>Todo List</StTotalTitle>
@@ -48,38 +56,46 @@ function App() {
       </StFormContainer>
       <StDisplay>
         <StTodoContainer>
-          <h1>working</h1>
+          <h1>WORKING💨</h1>
           {todos
             .filter((todo: Todo) => {
               return todo.isDone === false;
             })
             .map((todo: Todo) => {
               return (
-                <div key={todo.id}>
+                <StTodoCard key={todo.id}>
                   <h2>{todo.title}</h2>
                   <p>{todo.content}</p>
-                  <p>{todo.isDone}</p>
-                  <button>삭제</button>
-                  <button>완료</button>
-                </div>
+                  <p>{String(todo.isDone)}</p>
+                  <button onClick={() => deleteTodoHandler(todo.id)}>
+                    delete
+                  </button>
+                  <button onClick={() => switchTodoHandler(todo.id)}>
+                    done
+                  </button>
+                </StTodoCard>
               );
             })}
         </StTodoContainer>
         <StTodoContainer>
-          <h1>done</h1>
+          <h1>🌿 DONE 🌿</h1>
           {todos
             .filter((todo: Todo) => {
               return todo.isDone === true;
             })
             .map((todo: Todo) => {
               return (
-                <div key={todo.id}>
-                  <h2>제목</h2>
-                  <p>내용</p>
-                  <p>완료여부</p>
-                  <button>삭제</button>
-                  <button>취소</button>
-                </div>
+                <StTodoCard key={todo.id}>
+                  <h2>{todo.title}</h2>
+                  <p>{todo.content}</p>
+                  <p>{String(todo.isDone)}</p>
+                  <button onClick={() => deleteTodoHandler(todo.id)}>
+                    delete
+                  </button>
+                  <button onClick={() => switchTodoHandler(todo.id)}>
+                    cancel
+                  </button>
+                </StTodoCard>
               );
             })}
         </StTodoContainer>
@@ -94,6 +110,7 @@ const StOuterFrame = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin: 2rem;
 `;
 const StTotalTitle = styled.h1`
   font-size: 3rem;
@@ -105,13 +122,34 @@ const StTodoContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 2rem;
-  margin: 2rem;
+  margin: 1rem;
   h1 {
     font-size: 1.5rem;
     font-weight: 700;
+    width: 9rem;
   }
 `;
-const StForm = styled.form``;
+const StForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const StTodoCard = styled.div`
+  width: 15rem;
+  height: 10rem;
+  background-color: #e9fff6;
+  border: 1px solid #b3ffdf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  gap: 0.5rem;
+  h2 {
+    font-weight: 800;
+  }
+`;
 const StTitleInput = styled.input``;
 const StContentInput = styled.input``;
 const StSubmitBtn = styled.button`
