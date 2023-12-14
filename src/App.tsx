@@ -1,12 +1,9 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import uuid from "react-uuid";
 import { styled } from "styled-components";
-import { RootStateType } from "./redux/config/store";
 import { Todo } from "./types/todoType";
-import { addTodo, deleteTodo, switchTodo } from "./redux/modules/todoSlice";
-import { useQuery } from "react-query";
-import { getTodos } from "./api/todosApi";
+import { addTodo, deleteTodo, getTodos, switchTodo } from "./api/todosApi";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 
 function App() {
   const [title, setTitle] = useState<string>("");
@@ -14,8 +11,7 @@ function App() {
   const [id, setId] = useState<string>(uuid());
   const [isDone, setIsDone] = useState<boolean>(false);
 
-  const dispatch = useDispatch();
-  // const todos = useSelector((state: RootStateType) => state.todos);
+  const errorReportEmail = "26jopk5@gmail.com";
 
   const typeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -33,18 +29,53 @@ function App() {
       content,
       isDone: false,
     };
-    dispatch(addTodo(newTodo));
+    addMutation.mutate(newTodo);
     setTitle("");
     setContent("");
   };
 
   const deleteTodoHandler = (id: string) => {
-    dispatch(deleteTodo(id));
+    deleteMutation.mutate(id);
   };
 
-  const switchTodoHandler = (id: string) => {
-    dispatch(switchTodo(id));
+  const switchTodoHandler = (id: string, isDone: boolean) => {
+    switchMutation.mutate({ id, isDone });
   };
+
+  const queryClient = useQueryClient();
+
+  const addMutation = useMutation(addTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todos");
+      console.log("추가 성공");
+    },
+    onError: () => {
+      console.error("추가 중 오류발생");
+      alert("알 수 없는 오류가 생겼습니다. 고객센터(02-123-454)로 연락주세요.");
+    },
+  });
+
+  const deleteMutation = useMutation(deleteTodo, {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries("todos");
+      console.log("삭제 성공");
+    },
+    onError: () => {
+      console.error("삭제 중 오류발생");
+      alert("알 수 없는 오류가 생겼습니다. 고객센터(02-123-454)로 연락주세요.");
+    },
+  });
+
+  const switchMutation = useMutation(switchTodo, {
+    onSuccess: (data) => {
+      queryClient.invalidateQueries("todos");
+      console.log("스위치 성공");
+    },
+    onError: () => {
+      console.error("스위치 중 오류 발생");
+      alert("알 수 없는 오류가 생겼습니다. 고객센터(02-123-454)로 연락주세요.");
+    },
+  });
 
   const { isLoading, isError, data } = useQuery("todos", getTodos);
 
@@ -69,7 +100,7 @@ function App() {
       </StFormContainer>
       <StDisplay>
         <StTodoContainer>
-          <h1>WORKING💨</h1>
+          <h1>💨 WORKING 💨</h1>
           {data
             .filter((todo: Todo) => {
               return todo.isDone === false;
@@ -83,7 +114,9 @@ function App() {
                   <button onClick={() => deleteTodoHandler(todo.id)}>
                     delete
                   </button>
-                  <button onClick={() => switchTodoHandler(todo.id)}>
+                  <button
+                    onClick={() => switchTodoHandler(todo.id, todo.isDone)}
+                  >
                     done
                   </button>
                 </StTodoCard>
@@ -105,7 +138,9 @@ function App() {
                   <button onClick={() => deleteTodoHandler(todo.id)}>
                     delete
                   </button>
-                  <button onClick={() => switchTodoHandler(todo.id)}>
+                  <button
+                    onClick={() => switchTodoHandler(todo.id, todo.isDone)}
+                  >
                     cancel
                   </button>
                 </StTodoCard>
@@ -134,12 +169,13 @@ const StDisplay = styled.div``;
 const StTodoContainer = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 2rem;
   margin: 1rem;
   h1 {
     font-size: 1.5rem;
     font-weight: 700;
-    width: 9rem;
+    width: 11rem;
   }
 `;
 const StForm = styled.form`
