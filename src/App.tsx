@@ -5,6 +5,8 @@ import { styled } from "styled-components";
 import { RootStateType } from "./redux/config/store";
 import { Todo } from "./types/todoType";
 import { addTodo, deleteTodo, switchTodo } from "./redux/modules/todoSlice";
+import { useQuery } from "react-query";
+import { getTodos } from "./api/todosApi";
 
 function App() {
   const [title, setTitle] = useState<string>("");
@@ -13,7 +15,7 @@ function App() {
   const [isDone, setIsDone] = useState<boolean>(false);
 
   const dispatch = useDispatch();
-  const todos = useSelector((state: RootStateType) => state.todos);
+  // const todos = useSelector((state: RootStateType) => state.todos);
 
   const typeTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -43,6 +45,17 @@ function App() {
   const switchTodoHandler = (id: string) => {
     dispatch(switchTodo(id));
   };
+
+  const { isLoading, isError, data } = useQuery("todos", getTodos);
+
+  if (isLoading) {
+    return <h1>로딩중...</h1>;
+  }
+
+  if (isError) {
+    return <h1>오류발생!</h1>;
+  }
+
   return (
     <StOuterFrame>
       <StTotalTitle>Todo List</StTotalTitle>
@@ -57,7 +70,7 @@ function App() {
       <StDisplay>
         <StTodoContainer>
           <h1>WORKING💨</h1>
-          {todos
+          {data
             .filter((todo: Todo) => {
               return todo.isDone === false;
             })
@@ -79,7 +92,7 @@ function App() {
         </StTodoContainer>
         <StTodoContainer>
           <h1>🌿 DONE 🌿</h1>
-          {todos
+          {data
             .filter((todo: Todo) => {
               return todo.isDone === true;
             })
