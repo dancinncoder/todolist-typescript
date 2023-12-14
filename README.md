@@ -1,6 +1,6 @@
 # Todo List
 
-TodoList TypeScript (RTK)
+TodoList TypeScript (RTK + React Query:3.39.3)
 
 ## Project Type
 
@@ -16,14 +16,15 @@ Individual Project
 2. JavaScript
 3. TypeScript
 4. Redux Toolkit
-5. HTML
-6. CSS
+5. React-query 3.39.3
+6. HTML
+7. CSS
 
-7. Styled-Components (CSS)
+8. Styled-Components (CSS)
 
 ## Data Manamgement
 
-Redux Toolkit
+React-query 3.39.3
 
 ## Features
 
@@ -41,7 +42,7 @@ Redux Toolkit
 Copy and paste on the web browser to check the deployment result.
 
 ```
-https://reduxfanletter.vercel.app/
+<!-- https://reduxfanletter.vercel.app/ -->
 
 ```
 
