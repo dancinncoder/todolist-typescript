@@ -32,19 +32,6 @@ Redux Toolkit
 3. Delete TodoList
 4. Switch status
 
-## Service Overview
-
-![fan-letter-video-gif](https://github.com/dancinncoder/fanletter/assets/127386988/94d7afe4-443a-43fc-86fc-4573c044d67c)
-
-## Deployment
-
-Copy and paste on the web browser to check the deployment result.
-
-```
-https://reduxfanletter.vercel.app/
-
-```
-
 ## Built With
 
 - Letter icon : Icons8
